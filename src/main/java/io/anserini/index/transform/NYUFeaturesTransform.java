@@ -147,8 +147,7 @@ public class NYUFeaturesTransform extends StringTransform {
     protected String fracText(String selector, int length) {
         StringBuffer buffer = new StringBuffer();
         document.select(selector).forEach(e -> buffer.append(e.text()).append(" "));
-        List<String> list = Arrays.asList(strNormalize(buffer.toString()).split("\\s"));
-        float n = list.stream()
+        float n = Arrays.stream(strNormalize(buffer.toString()).split("\\s"))
             .filter(w -> w.length()>0)
             .count();
         return Float.toString(n/length);
@@ -163,10 +162,9 @@ public class NYUFeaturesTransform extends StringTransform {
 //    }
 
     protected String avgTermLength() {
-        int n = 0;
-        for (String w: contents.split("\\s")) {
-            n += w.length();
-        }
+        int n = Arrays.stream(contents.split("\\s"))
+            .map(w -> w.length())
+            .reduce(0, Integer::sum);
         return Float.toString(((float)n)/contents.length());
     }
 

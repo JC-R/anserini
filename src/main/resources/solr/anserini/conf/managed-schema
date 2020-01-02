@@ -518,7 +518,7 @@
   <field name="raw" type="text_general" indexed="false" stored="true" multiValued="false" />
   
   <!-- "contents" are stored and searchable. -->
-  <field name="contents" type="text_en_anserini" indexed="true" stored="true" multiValued="false" />
+  <field name="contents" type="text_en_anserini" indexed="true" stored="true" multiValued="false" termVectors="true" />
 
   <!-- Anserini WashingtonPost Fields -->
   <field name="author" type="string" />
@@ -532,5 +532,13 @@
     <float name="k1">0.9</float>
     <float name="b">0.4</float>
   </similarity>
+
+  <!-- NYU WestLab features -->
+  <field name="outlinks" type="string" indexed="false" stored="true" multiValued="true" docValues="true" />
+  <dynamicField name="*_f_i" type="pint" indexed="false" stored="true" multiValued="false" termVectors="false" docValues="true"  />
+  <dynamicField name="*_f_s" type="string" indexed="false" stored="true" multiValued="false" termVectors="false" docValues="true"  />
+  <dynamicField name="*_f_f" type="pfloat" indexed="false" stored="true" multiValued="false" termVectors="false" docValues="true"  />
+  <dynamicField name="*_f_l" type="plong" indexed="false" stored="true" multiValued="false" termVectors="false" docValues="true"  />
+
 
 </schema>

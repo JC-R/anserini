@@ -20,6 +20,7 @@ import io.anserini.collection.MultifieldSourceDocument;
 import io.anserini.collection.SourceDocument;
 import io.anserini.index.IndexArgs;
 import io.anserini.index.IndexCollection;
+import io.anserini.index.transform.NYUFeaturesTransform;
 import io.anserini.index.transform.StringTransform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +47,7 @@ public class LuceneDocumentGenerator<T extends SourceDocument> {
   public static final String FIELD_BODY = "contents";
   public static final String FIELD_ID = "id";
 
-  private final StringTransform transform;
+  protected final StringTransform transform;
 
   protected IndexCollection.Counters counters;
   protected IndexArgs args;
@@ -64,6 +65,7 @@ public class LuceneDocumentGenerator<T extends SourceDocument> {
    * @param transform string transform to apply
    */
   public LuceneDocumentGenerator(StringTransform transform) {
+
     this.transform = transform;
   }
 
